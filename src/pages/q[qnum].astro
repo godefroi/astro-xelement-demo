@@ -1,0 +1,16 @@
+---
+import Quote from '../components/quote.astro';
+import importedQuotes from '../../public/quotes.json';
+
+export async function getStaticPaths() {
+	const quotes = importedQuotes as string[];
+	return quotes.map((value, index) => {
+		const qnum = index.toString();
+		return {
+			params: { qnum },
+			props: { quote: value }
+		};
+	});
+}
+---
+<Quote quote={Astro.props.quote} />
