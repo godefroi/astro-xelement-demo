@@ -1,5 +1,9 @@
 ---
+import Quote from '../components/quote.astro';
+import importedQuotes from '../../public/quotes.json';
 
+const quotes      = importedQuotes as string[];
+const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
 ---
 <html lang="en">
 	<head>
@@ -10,5 +14,9 @@
 	<body>
 		<h1>Astro</h1>
 		<p>Here I want a random quote...</p>
+		<Quote quote="this is a hard-coded quote" />
+
+		<!-- this quote is random, but only at build-time. That's fine under `yarn dev` but not once built... -->
+		<Quote quote={randomQuote} />
 	</body>
 </html>
